@@ -1,0 +1,11 @@
+mini-language
+start
+	ints voting_age= 18 your_age
+	write "What is your age?"
+	if your_age >= voting_age do
+		write "You can vote!"+NEW_LINE
+		end
+	else do
+		write "You cannot vote!"+NEW_LINE
+		end
+end

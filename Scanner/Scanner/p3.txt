@@ -1,0 +1,10 @@
+mini_language
+start
+	int voting_age= 18
+	int count= 0
+	string students_age[17 19 18 17]
+	stuents.each age do
+		count+=1 if age >= voting_age
+	end
+	write count + " students can vote!"
+end
