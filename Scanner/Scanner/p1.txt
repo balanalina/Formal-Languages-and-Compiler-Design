@@ -2,6 +2,6 @@ mini-language
 start
 	strings s nume
 	s= "Hello "
-	#nume= read
+	nume= read
 	write s+nume+"!"
 end

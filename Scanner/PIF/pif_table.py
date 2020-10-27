@@ -19,7 +19,7 @@ class PIF:
     def pretty_print(self):
         result = ''
         for row in self.table:
-            result += (row[0] + "\t" + str(row[1])+'\n')
+            result += (str(self.table.index(row)+1) + "\t" + row[0] + "\t" + str(row[1])+'\n')
         return result
 
 

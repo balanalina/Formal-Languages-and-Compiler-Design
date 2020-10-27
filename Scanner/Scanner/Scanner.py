@@ -1,3 +1,5 @@
+import copy
+
 from symbol_table.hash_table import *
 from PIF.pif_table import *
 import string
@@ -11,8 +13,8 @@ class Scanner:
         self.file = file_path
         self.reserved_words = ['mini-language', 'start', 'end', 'do', 'int', 'ints', 'string', 'strings', 'if',
         'else', 'write', 'read', 'each', 'NEW_LINE', 'while']
-        self.operators = ['+', '-', '*', '!=', '==', '<', '>', '<=', '>=']
-        self.separators = ['[', ']']
+        self.operators = ['+', '-', '*', '!=', '==', '<', '>', '<=', '>=', '=']
+        self.separators = ['[', ']','.']
 
     # return a list with the chars of the line
     def char_split(self, word):
@@ -46,14 +48,24 @@ class Scanner:
         return False
 
     def detect(self,line):
-        result_tokens=[]
+        seen = False
+        index = -1
+        result_tokens = []
         tokens = line.split()
         for token in tokens:
-            if token.find('"') != -1:
-                const = self.find_constant(tokens,token)
-                result_tokens.append(const)
-            if token in self.reserved_words:
+            if seen:
+                if index > tokens.index(token):
+                    continue
+                else:
+                    seen = False
+            elif token in self.reserved_words:
                 result_tokens.append(token)
+            #elif self.check_operator(token):
+                #self.split_operands(token,tokens)
+            elif token.find('"') != -1:
+                seen = True
+                const, index = self.find_constant(tokens,token)
+                result_tokens.append(const)
             elif token in self.operators:
                 result_tokens.append(token)
             elif token in self.separators:
@@ -85,14 +97,34 @@ class Scanner:
             if tokens[index].find('"') != -1:
                 substr_index = tokens[index].find('"')
                 const += " "+tokens[index][0:substr_index+1]
-                return const
+                return const, index
             else:
                 const += " "+tokens[index]
             index+=1
-        return "error"
+        return "error",index
 
-    def split_operands(self,token):
-        pass
+    def split_operands(self,token, tokens):
+        index = tokens.index(token)
+        op = self.get_operator(token)
+        new_tokens = token.split(op)
+        for new_token in new_tokens:
+            index += 1
+            tokens.insert(index, new_token)
+            index += 1
+            tokens.insert(index, op)
+
+    def check_operator(self, token):
+        if token in self.reserved_words:
+            return False
+        for operator in self.operators:
+            if token.find(operator) != -1:
+                return True
+        return False
+
+    def get_operator(self, token):
+        for operator in self.operators:
+            if token.find(operator) != -1:
+                return operator
 
 
 ok = Scanner('p1.txt')
