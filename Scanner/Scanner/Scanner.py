@@ -60,8 +60,8 @@ class Scanner:
                     seen = False
             elif token in self.reserved_words:
                 result_tokens.append(token)
-            #elif self.check_operator(token):
-                #self.split_operands(token,tokens)
+            elif self.check_operator(token):
+                self.split_operands(token,tokens)
             elif token.find('"') != -1:
                 seen = True
                 const, index = self.find_constant(tokens,token)
