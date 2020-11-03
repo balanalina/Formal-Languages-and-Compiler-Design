@@ -1,26 +1,24 @@
 PIF: 
-mini-language	0
-start	0
-ints	0
-ID	(19, 1)
-CONST	(35, 1)
-ID	(49, 1)
-write	0
-CONST	(7, 1)
-ID	(41, 1)
-if	0
-ID	(41, 1)
->=	0
-ID	(6, 1)
-do	0
-write	0
-CONST	(15, 1)
-ID	(37, 1)
-end	0
-else	0
-do	0
-write	0
-CONST	(50, 1)
-ID	(50, 1)
-end	0
-end	0
+1	mini-language	0
+2	start	0
+3	ints	0
+4	ID	(6, 1)
+5	=	0
+6	CONST	(35, 1)
+7	ID	(49, 1)
+8	write	0
+9	CONST	(7, 1)
+10	if	0
+11	ID	(7, 1)
+12	>=	0
+11	ID	(7, 1)
+14	do	0
+8	write	0
+16	CONST	(15, 1)
+17	end	0
+18	else	0
+14	do	0
+8	write	0
+21	CONST	(50, 1)
+17	end	0
+17	end	0

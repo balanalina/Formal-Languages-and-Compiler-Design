@@ -58,6 +58,10 @@ class Scanner:
                     continue
                 else:
                     seen = False
+            elif token in self.operators:
+                result_tokens.append(token)
+            elif token in self.separators:
+                result_tokens.append(token)
             elif token in self.reserved_words:
                 result_tokens.append(token)
             elif self.check_operator(token):
@@ -66,10 +70,6 @@ class Scanner:
                 seen = True
                 const, index = self.find_constant(tokens,token)
                 result_tokens.append(const)
-            elif token in self.operators:
-                result_tokens.append(token)
-            elif token in self.separators:
-                result_tokens.append(token)
             elif re.search("^[1-9][0-9]*$",token) != None:
                 result_tokens.append(token)
             else:
@@ -108,10 +108,11 @@ class Scanner:
         op = self.get_operator(token)
         new_tokens = token.split(op)
         for new_token in new_tokens:
-            index += 1
-            tokens.insert(index, new_token)
-            index += 1
-            tokens.insert(index, op)
+            if new_token != "":
+                index += 1
+                tokens.insert(index, new_token)
+                index += 1
+                tokens.insert(index, op)
 
     def check_operator(self, token):
         if token in self.reserved_words:

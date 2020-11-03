@@ -4,8 +4,15 @@ PIF:
 3	strings	0
 4	ID	(1, 1)
 5	ID	(34, 1)
-6	ID	(20, 1)
-7	CONST	(29, 1)
-8	read	0
-9	write	0
-10	end	0
+5	ID	(34, 1)
+7	=	0
+8	CONST	(29, 1)
+9	ID	(29, 1)
+7	=	0
+11	read	0
+12	write	0
+9	ID	(29, 1)
+14	+	0
+9	ID	(29, 1)
+14	+	0
+17	end	0

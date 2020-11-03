@@ -1,8 +1,8 @@
 Symbol table:
-1	: 
+1	: 1 
 2	: 
 3	: 
-4	: stuents.each 
+4	: 
 5	: 
 6	: voting_age 
 7	: 
@@ -17,12 +17,12 @@ Symbol table:
 16	: 
 17	: 
 18	: 
-19	: voting_age= " students can vote!" 
+19	: " students can vote!" 
 20	: 
 21	: 
-22	: count+=1 
+22	: 
 23	: 
-24	: count= 
+24	: 
 25	: 
 26	: 
 27	: 
@@ -34,9 +34,9 @@ Symbol table:
 33	: 
 34	: 
 35	: 18 
-36	: mini_language 
+36	: mini_language students.each 
 37	: 
-38	: students_age[17 
+38	: students_age
 39	: 
 40	: count 
 41	: 
@@ -47,5 +47,5 @@ Symbol table:
 46	: 
 47	: 
 48	: 
-49	: vote!" 
+49	: 
 50	: 19 
