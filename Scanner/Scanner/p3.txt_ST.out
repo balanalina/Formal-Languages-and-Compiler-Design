@@ -2,7 +2,7 @@ Symbol table:
 1	: 1 
 2	: 
 3	: 
-4	: 
+4	: stuents.each 
 5	: 
 6	: voting_age 
 7	: 
@@ -34,9 +34,9 @@ Symbol table:
 33	: 
 34	: 
 35	: 18 
-36	: mini_language students.each 
+36	: mini_language 
 37	: 
-38	: students_age
+38	: students_age[17 
 39	: 
 40	: count 
 41	: 
