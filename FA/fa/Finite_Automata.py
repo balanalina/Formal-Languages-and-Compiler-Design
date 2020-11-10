@@ -32,6 +32,8 @@ class Finite_Automata:
 
     def DFA_accept(self, sequence):
         # check if sequence contains letters that are not in our alphabet
+        if not self.dfa:
+            return False
         for char in sequence:
             if char not in self.alphabet:
                 return False
@@ -59,8 +61,6 @@ class Finite_Automata:
                 return True
         return False
 
-    def DFA_check(self):
-        pass
 
     def get_menu(self):
         menu = ''
