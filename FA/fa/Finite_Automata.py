@@ -10,6 +10,7 @@ class Finite_Automata:
         self.states = None
         self.transitions = {}
         self.current_state = None
+        self.dfa = True
         self.read_file()
 
     def read_file(self):
@@ -25,9 +26,11 @@ class Finite_Automata:
         self.states = fa[0].split(',')
         self.alphabet = fa[1].split(',')
         for i in range(4, len(fa)):
+            if (fa[i][0], fa[i][2]) in self.transitions.keys():
+                self.dfa = False
             self.transitions[(fa[i][0], fa[i][2])] = fa[i][6]
 
-    def DFA_check(self, sequence):
+    def DFA_accept(self, sequence):
         # check if sequence contains letters that are not in our alphabet
         for char in sequence:
             if char not in self.alphabet:
@@ -56,6 +59,9 @@ class Finite_Automata:
                 return True
         return False
 
+    def DFA_check(self):
+        pass
+
     def get_menu(self):
         menu = ''
         menu += '0.Exit \n'
@@ -64,11 +70,11 @@ class Finite_Automata:
         menu += '3.Display all the transitions.\n'
         menu += '4.Display the set of final states.\n'
         menu += '5.Check if a sequence is accepted by the FA.\n'
+        menu += '6.Check if deterministic. \n'
         menu += 'Enter command:'
         return menu
 
     def menu(self):
-        self.read_file()
         while True:
             print("\n")
             print(self.get_menu())
@@ -86,13 +92,24 @@ class Finite_Automata:
             elif command == 5:
                 print("Enter the sequence: ")
                 sequence = input()
-                if self.DFA_check(sequence):
+                if self.DFA_accept(sequence):
                     print(colored(sequence + " is accepted!", 'green'))
                 else:
                     print(colored(sequence + " is not accepted!", 'red'))
+            elif command == 6:
+                if self.dfa:
+                    print(colored("Is deterministic!", 'green'))
+                else:
+                    print(colored("Is not deterministic!", 'red'))
             else:
                 break
 
 
-ok = Finite_Automata("FA2.in")
+ok = Finite_Automata("FA.in")
 ok.menu()
+
+# 010111 - accepted for Fa2
+# 010111101
+# 00000001
+
+# 01011110111
