@@ -9,7 +9,7 @@ class Finite_Automata:
         self.alphabet = None
         self.states = None
         self.transitions = {}
-        self.current_state = 'A'
+        self.current_state = None
         self.read_file()
 
     def read_file(self):
@@ -17,20 +17,20 @@ class Finite_Automata:
         fa = []
         for line in file:
             # we don't need the new line
-            line.replace("\n", "")
-            fa.append(line)
+            fa.append(line.replace("\n", ""))
         # get the information from the file
         self.start_state = fa[2]
-        self.final_states = fa[3].split()
-        self.states = fa[0].split()
-        self.alphabet = fa[1].split()
+        self.current_state = self.start_state
+        self.final_states = fa[3].split(',')
+        self.states = fa[0].split(',')
+        self.alphabet = fa[1].split(',')
         for i in range(4, len(fa)):
             self.transitions[(fa[i][0], fa[i][2])] = fa[i][6]
 
     def DFA_check(self, sequence):
         # check if sequence contains letters that are not in our alphabet
         for char in sequence:
-            if char != '0' and char != '1':
+            if char not in self.alphabet:
                 return False
         for char in sequence:
             if not self.check_next_state(char):
@@ -94,5 +94,5 @@ class Finite_Automata:
                 break
 
 
-ok = Finite_Automata("FA.in")
+ok = Finite_Automata("FA2.in")
 ok.menu()
