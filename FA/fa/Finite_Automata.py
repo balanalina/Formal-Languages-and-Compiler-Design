@@ -4,7 +4,6 @@ from termcolor import colored, cprint
 class Finite_Automata:
     def __init__(self, file_path):
         self.file = file_path
-        self.fa = []
         self.start_state = None
         self.final_states = []
         self.alphabet = None
@@ -17,35 +16,43 @@ class Finite_Automata:
         file = open(self.file, 'r')
         fa = []
         for line in file:
-            line.replace("\n","")
+            # we don't need the new line
+            line.replace("\n", "")
             fa.append(line)
+        # get the information from the file
         self.start_state = fa[2]
         self.final_states = fa[3].split()
         self.states = fa[0].split()
         self.alphabet = fa[1].split()
-        for i in range(4,len(fa)):
-            self.transitions[(fa[i][0],fa[i][2])] = fa[i][6]
+        for i in range(4, len(fa)):
+            self.transitions[(fa[i][0], fa[i][2])] = fa[i][6]
 
     def DFA_check(self, sequence):
+        # check if sequence contains letters that are not in our alphabet
         for char in sequence:
             if char != '0' and char != '1':
                 return False
         for char in sequence:
             if not self.check_next_state(char):
                 return False
+        # we iterated all the characters from the sequence and they followed the DFA until now
+        # if the last state is not a final state then it doesn't follow the DFA
         if not self.final_states.__contains__(str(self.current_state)):
             return False
         return True
 
-    def check_next_state(self,char):
+    # checks if from current state we can get to the next one from the sequence
+    def check_next_state(self, char):
         possible_transitions = []
+        # get all possible 'next state' transitions from the current state
         for state in self.transitions.keys():
             if state[0] == self.current_state:
                 possible_transitions.append(state[1])
+        # switch to next state
         for trans in possible_transitions:
             if char == trans:
                 old_state = self.current_state
-                self.current_state = self.transitions[old_state,trans]
+                self.current_state = self.transitions[old_state, trans]
                 return True
         return False
 
@@ -80,17 +87,12 @@ class Finite_Automata:
                 print("Enter the sequence: ")
                 sequence = input()
                 if self.DFA_check(sequence):
-                    print(colored(sequence + " is accepted!",'green'))
+                    print(colored(sequence + " is accepted!", 'green'))
                 else:
-                    print(colored(sequence + " is not accepted!",'red'))
+                    print(colored(sequence + " is not accepted!", 'red'))
             else:
                 break
 
 
-
-
-
 ok = Finite_Automata("FA.in")
 ok.menu()
-
-
