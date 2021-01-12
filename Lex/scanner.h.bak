@@ -1,0 +1,8 @@
+#define mini_language 1
+#define do_start 2
+#define do_end 3
+#define do_do 4
+#define intt 5
+#define intts 6
+#define stringg 7
+#define stringgs 8

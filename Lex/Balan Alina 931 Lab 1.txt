@@ -1,0 +1,53 @@
+Balan Alina 931/1
+Lab 1 - 29.09.2020
+
+
+	P1
+Small program that greets the user
+
+mini-language
+start
+	strings s nume
+	s= "Hello "
+	nume= read
+	write s+nume+"!"
+end
+
+	P2
+Checks if the user can vote
+ 
+mini-language
+start
+	ints voting_age= 18, your_age
+	write "What is your age?"
+	if your_age >= voting_age do
+		write "You can vote!"+NEW_LINE
+		end
+	else do
+		write "You cannot vote!"+NEW_LINE
+		end		
+end
+
+
+	P3	
+Checks how many students from a list can vote
+mini_language
+start
+	int voting_age= 18
+	int count= 0
+	string students_age[17 19 18 17]
+	stuents.each age do
+		count+=1 if age >= voting_age
+	end
+	write count + " students can vote!"
+end
+
+	P1err
+
+mini-language
+start
+	strings $s nume  --variable names can't start with $
+	s= "Hello "
+	nume= read
+	write s+nume+"!  --unclosed "
+end
